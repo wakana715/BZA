@@ -1,0 +1,110 @@
+    1 A000              ORG $A000       ;ERROR TEST
+    2*S01               S1:DB "STR1     ;S01
+      A000             
+    3*S01               S2:DB "STR2     ;S01
+      A000             
+    4*S02               S3:DB ""        ;S02
+      A000             
+    5*S02               S4:DB ""        ;S02
+      A000             
+    6*S02               S5:DB "":NOP    ;S02
+      A000             
+    7*S03               9  EQU 0        ;S03
+    8*S03               A! EQU 0        ;S03
+    9*S03  00           B# EQU 0:NOP    ;S03
+   10*S04               ABC B,C         ;S04
+   11*S05               LD B,           ;S05
+   12*S05               EX DE,          ;S05
+   13 A001              BIT             ;S05
+   14*S05               RES 1           ;S05
+   15*S05               SET 2,          ;S05
+   16 A001              ADD             ;S05
+   17*S05               ADC A           ;S05
+   18*S05               SBC B,          ;S05
+   19*S05               IN (C),         ;S05
+   20 A001              JP              ;S05
+   21 A001              CALL            ;S05
+   22 A001              IM              ;S05
+   23 A001              DJNZ            ;S05
+   24 A001              JR              ;S05
+   25 A001              OR              ;S05
+   26 A001 2F           CP              ;S05
+   27 A002              SUB             ;S05
+   28 A002              AND             ;S05
+   29 A002              XOR             ;S05
+   30 A002              POP             ;S05
+   31 A002              PUSH            ;S05
+   32 A002              RST             ;S05
+   33 A002              INC             ;S05
+   34 A002              DEC             ;S05
+   35 A002              ORG             ;S05
+   36 A002 EDA2         IN              ;S05
+   37*S05               IN B            ;S05
+   38*S05               IN B,           ;S05
+   39*S05               IN B,(          ;S05
+   40*S05               IN B,(C         ;S05
+   41 A004 EDA3         OUT             ;S05
+   42*S05               OUT (           ;S05
+   43*S05               OUT (C          ;S05
+   44*S05               OUT (C)         ;S05
+   45*S05               OUT (C),        ;S05
+   46*S06               LD B,(          ;S06
+   47*S06               LD C,(HL        ;S06
+   48*S06               LD D,()         ;S06
+   49*S07               LD B,(IX)       ;S07
+   50*S07               LD C,(IX+)      ;S07
+   51*S07               LD D,(IY)       ;S07
+   52*S07               LD E,(IY+)      ;S07
+   53*S08               LD BC,(         ;S08
+   54*S08               LD BC,()        ;S08
+   55*S08               LD DE,(         ;S08
+   56*S08               LD DE,()        ;S08
+   57*S09               LD HL,()        ;S09
+   58*S10               LD (F000H),     ;S10
+   59*S11               LD (IX+1)       ;S11
+   60*S11               LD (IX+2),      ;S11
+   61*S11               LD (IY+3)       ;S11
+   62*S11               LD (IY+4),      ;S11
+   63*S12               EX (SP),        ;S12
+   64*S13               RL (HL          ;S13
+   65*S14               RR (IX+         ;S14
+   66*S15               SBC A,(HL       ;S15
+   67*S15               SUB (HL         ;S15
+   68*S16               ADD A,(IX+3     ;S16
+   69*S16               AND (IX+5       ;S16
+   70*S17               DEC (HL         ;S17
+   71*S18               INC (IX+7       ;S18
+   72*I01               LD T,0          ;I01
+   73*I02               LD (F000H),RR   ;I02
+   74*I03               PUSH A          ;I03
+   75*I04               RLC T,0         ;I04
+   76*I05               RRC (IZ+1)      ;I05
+   77*I06               ADC HL,RR       ;I06
+   78*I07               ADC A,(IZ+4)    ;I07
+   79*I07               OR (JX+6)       ;I07
+   80*I08               OUT (D),B       ;I08
+   81*I08               IN (E),C        ;I08
+   82*I09               OUT (C),R       ;I09
+   83*I10               INC RR          ;I10
+   84*I11               DEC (RR+8)      ;I11
+   85*I12               RES 3,(RR+11)   ;I12
+   86*I13               EX (SP),RR      ;I13
+   87*I13               JP (RR)         ;I13
+   88*R01               LD B,(BC)       ;R01
+   89*R01               LD C,(DE)       ;R01
+   90*B01               RES 9,B         ;B01
+   91*F01               RET ZZ          ;F01
+   92*F02               CALL ZZ,NEXT01  ;F02
+   93*P01               IM 9            ;P01
+   94*P02               RST -1          ;P02
+   95*U01  0E00         LD C,UNDEFL     ;U01
+   96*U01  C20000       JP NZ,UNDEFL    ;U01
+   97*U01  CC0000       CALL Z,UNDEFL   ;U01
+   98 B000              ORG $B000
+   99 B000              LJR1:
+  100*J01               JR LJR2         ;J01
+  101 B100              ORG $B100
+  102 B100              LJR2:
+  103*J01               DJNZ LJR1       ;J01
+  104*E01  ED4B0000     LD BC,((1+2)+3  ;E01
+  105*D01  010000       LD BC,1/0       ;D01
